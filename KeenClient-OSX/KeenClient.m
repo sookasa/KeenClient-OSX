@@ -8,7 +8,7 @@
 
 #import "KeenClient.h"
 #import "KeenConstants.h"
-#import "JSONKit.h"
+#import <SKCommonLibraryForMac/JSONKit.h>
 #import "ISO8601DateFormatter.h"
 #import <CoreLocation/CoreLocation.h>
 
