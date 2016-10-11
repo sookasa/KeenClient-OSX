@@ -355,7 +355,7 @@ static BOOL loggingEnabled = NO;
     // If it's a relatively recent event, turn off updates to save power
     NSDate* eventDate = newLocation.timestamp;
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-    if (abs(howRecent) < 15.0) {
+    if (fabs(howRecent) < 15.0) {
         KCLog(@"latitude %+.6f, longitude %+.6f\n",
               newLocation.coordinate.latitude,
               newLocation.coordinate.longitude);
@@ -364,7 +364,7 @@ static BOOL loggingEnabled = NO;
         [self.locationManager stopUpdatingLocation];
         KCLog(@"Done finding location");
     } else {
-        KCLog(@"Event wasn't recent enough: %+.2d", abs(howRecent));
+        KCLog(@"Event wasn't recent enough: %+.2f", fabs(howRecent));
     }
 }
 
@@ -843,7 +843,7 @@ static BOOL loggingEnabled = NO;
     if (error != NULL) {
         NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errorMessage forKey:NSLocalizedDescriptionKey];
         *error = [NSError errorWithDomain:kKeenErrorDomain code:1 userInfo:userInfo];
-        KCLog(*error);
+        KCLog(@"%@", [(NSError*)(*error) description]);
     }
 }
                     
